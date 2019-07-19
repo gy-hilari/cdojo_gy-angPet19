@@ -1,0 +1,36 @@
+*{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+#container{
+    width: 970px;
+    margin: 0px auto;
+    text-align: center;
+}
+
+.user-form {
+    text-align: center;
+}
+
+.user-form form input, .user-form form h4{
+    margin: 0px auto;
+}
+
+.user-form form input{
+    display: block;
+}
+.user-form form h4{
+    display: block;
+}
+
+/* table-sections */
+
+.table-section{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.table-interface{
+    margin-bottom: 14px;
+}

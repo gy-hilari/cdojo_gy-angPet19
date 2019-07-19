@@ -1,0 +1,78 @@
+<h3>{{title}}</h3>
+
+<!-- #region validations -->
+<!-- Name -->
+<p *ngIf="newPet['name'].length < 3 && messages['nameShort']['display'] == true ">
+    {{messages['nameShort']['message']}}
+</p>
+<p *ngIf="newPet['name'].length > 45 && messages['nameLong']['display'] == true ">
+    {{messages['nameLong']['message']}}
+</p>
+
+<!-- Type -->
+<p *ngIf="newPet['type'].length < 3 && messages['typeShort']['display'] == true ">
+    {{messages['typeShort']['message']}}
+</p>
+<p *ngIf="newPet['type'].length > 45 && messages['typeLong']['display'] == true ">
+    {{messages['typeLong']['message']}}
+</p>
+
+<!-- Description -->
+<p *ngIf="newPet['description'].length < 3 && messages['descShort']['display'] == true ">
+    {{messages['descShort']['message']}}
+</p>
+<p *ngIf="newPet['description'].length > 45 && messages['descLong']['display'] == true ">
+    {{messages['descLong']['message']}}
+</p>
+
+<!-- Skill -->
+<ng-template ngFor let-skill [ngForOf]="newPet['skills']" let-i="index">
+    <p *ngIf="newPet['skills'][i].length > 0 && newPet['skills'][i].length < 3 && messages['skillShort']['display'] == true ">
+        {{messages['skillShort']['message']}}
+    </p>
+    <p *ngIf="newPet['skills'][i].length > 45 && messages['skillShort']['display'] == true ">
+        {{messages['skillLong']['message']}}
+    </p>
+</ng-template>
+
+<!-- Entry Existed -->
+<p *ngIf="messages['entryExists']['display'] == true ">
+    {{messages['entryExists']['message']}}
+</p>
+
+
+<!-- endregion -->
+
+
+<div class="user-form">
+    <form (submit)="createPetViaService()">
+        <h4>Pet name:</h4>
+        <input (keyup)="toggleMessageDisplay('nameShort'); toggleMessageDisplay('nameLong')" type="text" name="pet-name" [(ngModel)]="newPet['name']">
+        
+        <h4>Pet type:</h4>
+        <input (keyup)="toggleMessageDisplay('typeShort'); toggleMessageDisplay('typeLong')" type="text" name="pet-type" [(ngModel)]="newPet['type']">
+
+        <h4>Description:</h4>
+        <input (keyup)="toggleMessageDisplay('descShort'); toggleMessageDisplay('descLong')" type="text" name="description" [(ngModel)]="newPet['description']">
+
+        <h4>Skills (Optional):</h4>
+        <input (keyup)="toggleMessageDisplay('skillShort'); toggleMessageDisplay('skillLong')" type="text" name="skill-1" [(ngModel)]="newPet['skills'][0]">
+        <input (keyup)="toggleMessageDisplay('skillShort'); toggleMessageDisplay('skillLong')" type="text" name="skill-2" [(ngModel)]="newPet['skills'][1]">
+        <input (keyup)="toggleMessageDisplay('skillShort'); toggleMessageDisplay('skillLong')" type="text" name="skill-3" [(ngModel)]="newPet['skills'][2]">
+        <button (click)="
+        toggleMessageDisplay('nameShort');
+        toggleMessageDisplay('nameLong');
+        toggleMessageDisplay('typeShort');
+        toggleMessageDisplay('typeLong');
+        toggleMessageDisplay('descShort');
+        toggleMessageDisplay('descLong');
+        toggleMessageDisplay('skillShort');
+        toggleMessageDisplay('skillLong');
+        " type="submit">Submit</button>
+    </form>
+    <button [routerLink]="['/pets']">Cancel</button>
+</div>
+
+<!-- <p>
+    {{newPet | json }}
+</p> -->

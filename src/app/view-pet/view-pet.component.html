@@ -1,0 +1,40 @@
+<button [routerLink]="['/pets']">Home</button>
+<h3>
+    {{title}}
+</h3>
+<hr>
+
+<h3>
+    Pet type:
+</h3>
+<p>
+    {{pet['type']}}
+</p>
+<h3>
+    Description:
+</h3>
+<p>
+    {{pet['description']}}
+</p>
+<h3>
+    Skills:
+</h3>
+<p *ngFor="let skill of pet['skills']">
+    {{skill}}
+</p>
+<h3>
+    Likes
+</h3>
+<p>
+    {{pet['likes']}}
+</p>
+
+<button (click)="deletePetViaService()">Adopt this pet</button>
+<button *ngIf="likeLimit == false" (click)="addLikeOfPetViaService()">Like this pet</button>
+
+<hr>
+<!-- <p>
+    {{ pet | json }}
+</p> -->
+
+
